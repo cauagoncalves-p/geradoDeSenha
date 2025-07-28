@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gerador de Senhas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <!-- SENHA GERADA -->
+    <section class="senha-gerada">
+      <input type="text" id="senha" placeholder="Sua senha aparecerá aqui" readonly/>
+      <div class="botoes">
+        <button id="copiarSenha">📋</button>
+        <button id="gerarSenha">🔄</button>
+      </div>
+    </section>
+
+    <!-- PERSONALIZAÇÃO -->
+    <section class="personalizacao">
+      <h2>Personalize sua senha</h2>
+      <hr/>
+
+      <div class="linha">
+        <label for="tamanho">Número de caracteres da senha</label>
+        <div class="controle-tamanho">
+          <input type="number" id="tamanho" min="0" max="50" value="12" />
+          <input type="range" id="slider" min="0" max="50" value="12" />
+        </div>
+      </div>
+
+      <div class="linha opcoes">
+        <div>
+          <label><input type="radio" name="modo" id="facilPronunciar" /> Fácil de pronunciar</label>
+          <label><input type="radio" name="modo" checked  id="facilLer"/> Fácil de ler</label>
+          <label><input type="radio" name="modo" id="todosCaracter" />Todos os caracteres</label>
+        </div>
+
+        <div class="checkboxes">
+          <label><input type="checkbox" checked id="maiscula"/> Letra maiúscula</label>
+          <label><input type="checkbox" checked id="minuscula"/> Letra minúscula</label>
+          <label><input type="checkbox" checked id="number"/> Números</label>
+          <label><input type="checkbox" checked id="simbolos"/> Símbolos</label>
+        </div>
+      </div>
+
+      <button class="btn-copiar">Copiar senha</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f1f1f1;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+  
+  .container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .senha-gerada {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .senha-gerada input {
+    flex: 1;
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+  }
+  
+  .botoes button {
+    padding: 12px;
+    border: none;
+    background-color: #2c8c6c;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .botoes button:hover {
+    background-color: #247256;
+  }
+  
+  .personalizacao h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+  
+  .personalizacao hr {
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #ddd;
+  }
+  
+  .linha {
+    margin-bottom: 20px;
+  }
+  
+  .controle-tamanho {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .controle-tamanho input[type="number"] {
+    width: 60px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .controle-tamanho input[type="range"] {
+    flex: 1;
+  }
+  
+  .opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .opcoes label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+  }
+  
+  .checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+  }
+  
+  .btn-copiar {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background-color: crimson;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .btn-copiar:hover {
+    background-color: darkred;
+  }
+  
+  /* Responsivo extra */
+  @media (max-width: 480px) {
+    .senha-gerada {
+      flex-direction: column;
+    }
+  
+    .controle-tamanho {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
