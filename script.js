@@ -22,42 +22,54 @@ window.onload = function(){
 
 const letrasM = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const letrasMi = 'abcdefghijklmnopqrstuvwxyz'
+const numeros = '1234567890';
 const caracteresSimbolos = '!@#$%^&*()_+{}[]<>?'
-
-function gerarLetras(){
-    
-}
-let senhaGerada = '';
-
 function GerarSenha(){
-    senhaGerada = '' 
-    if (facilPronunciar.checked){
-        // gerador de senha vai gerar senha maiuscula e minuscula
-        if (maiscula.checked && minuscula.checked){
-            let letras = letrasM + letrasMi
-            for (let i = 1; i <= tamanho.value; i++){
-                senhaGerada += letras.charAt(Math.floor(Math.random() * letras.length))
-            }
+    let senhaGerada = '';
+    let embaralhar = '';   
+        if (maiscula.checked){
+            embaralhar = letrasM;
         }
-        // gerador de senha vai gerar senha maiuscula
-        else if (maiscula.checked){
-            for (let i = 1; i <= tamanho.value; i++){
-                senhaGerada += letrasM.charAt(Math.floor(Math.random() * letrasM.length))
-            }
+        if (minuscula.checked){
+            embaralhar += letrasMi;
         }
-        // gerador de senha vai gerar senha minuscula
-        else if(minuscula.checked){
-            for (let i = 1; i <= tamanho.value; i++){
-                senhaGerada += letrasMi.charAt(Math.floor(Math.random() * letrasMi.length))
-            }
+        if (simbolos.checked){
+            embaralhar += caracteresSimbolos;
+        } 
+        if (number.checked){
+            embaralhar += numeros;
         }
-       inputSenha.value = senhaGerada;
-       number.disabled = true;
-       simbolos.disabled = true;
-    } 
+        for (let i = 0; i < tamanho.value; i++){
+            senhaGerada += embaralhar.charAt(Math.floor(Math.random() * embaralhar.length));
+        }
+        inputSenha.value = senhaGerada;
 }
 
-gerarSenha.addEventListener('click', ()=>{
-    GerarSenha()  
+facilPronunciar.addEventListener('change', (event) =>{
+    if (event.target.checked){
+        number.disabled = true, number.checked = false;
+        simbolos.disabled = true, simbolos.checked = false;
+    }
 })
 
+facilLer.addEventListener('change', (event)=>{
+    if (event.target.checked){
+        number.disabled = false, number.checked = false; 
+        simbolos.disabled = false, simbolos.checked = false      
+    }
+})
+
+todosCaracter.addEventListener('change', (event) =>{
+     if (event.target.checked){
+        number.checked = true; 
+        simbolos.checked = true;
+        minuscula.checked = true;
+        maiscula.checked = true;
+    }
+})
+
+
+
+gerarSenha.addEventListener('click', ()=>{
+ GerarSenha();
+})
