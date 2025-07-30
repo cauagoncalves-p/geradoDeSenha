@@ -22,11 +22,9 @@ window.onload = function(){
 
 const letrasM = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const letrasMi = 'abcdefghijklmnopqrstuvwxyz'
+const numeros = 1234567890
 const caracteresSimbolos = '!@#$%^&*()_+{}[]<>?'
 
-function gerarLetras(){
-    
-}
 let senhaGerada = '';
 
 function GerarSenha(){
@@ -52,12 +50,35 @@ function GerarSenha(){
             }
         }
        inputSenha.value = senhaGerada;
-       number.disabled = true;
-       simbolos.disabled = true;
     } 
 }
 
+facilPronunciar.addEventListener('change', (event) =>{
+    if (event.target.checked){
+        number.disabled = true;
+        simbolos.disabled = true;
+    }
+})
+
+facilLer.addEventListener('change', (event) =>{
+    if (event.target.checked){
+
+        number.disabled = false, number.checked = false;
+        simbolos.disabled = false, simbolos.checked = false;
+        
+    }
+})
+
+todosCaracter.addEventListener('change', (event) =>{
+    if (event.target.checked){
+        number.checked = true;
+        letrasM.checked = true;
+        letrasMi.checked = true
+        simbolos.checked = true;
+    }
+})
+
 gerarSenha.addEventListener('click', ()=>{
-    GerarSenha()  
+    GerarSenha() 
 })
 
