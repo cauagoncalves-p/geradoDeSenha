@@ -9,6 +9,9 @@ const number = document.getElementById('number');
 const simbolos = document.getElementById('simbolos');
 const gerarSenha = document.getElementById('gerarSenha');
 const inputSenha = document.getElementById('senha');
+const copytext = document.getElementById('copiarSenha'); 
+const botaoCopiar = document.getElementById('btn-copy');
+const inputCkeck = document.querySelectorAll('input');
 
 window.onload = function(){
     slider.addEventListener('input', () => {
@@ -24,6 +27,20 @@ const letrasM = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const letrasMi = 'abcdefghijklmnopqrstuvwxyz'
 const numeros = '1234567890';
 const caracteresSimbolos = '!@#$%^&*()_+{}[]<>?'
+
+function check(){
+    let inputs = false;
+
+    inputCkeck.forEach((e) =>{
+        if (e.checked){
+            inputs = true;
+        }
+    })
+
+    
+ 
+}
+
 function GerarSenha(){
     let senhaGerada = '';
     let embaralhar = '';   
@@ -42,7 +59,8 @@ function GerarSenha(){
         for (let i = 0; i < tamanho.value; i++){
             senhaGerada += embaralhar.charAt(Math.floor(Math.random() * embaralhar.length));
         }
-        inputSenha.value = senhaGerada;
+       inputSenha.value = senhaGerada;
+       botaoCopiar.innerHTML = "Copiar Texto"
 }
 
 facilPronunciar.addEventListener('change', (event) =>{
@@ -61,15 +79,35 @@ facilLer.addEventListener('change', (event)=>{
 
 todosCaracter.addEventListener('change', (event) =>{
      if (event.target.checked){
-        number.checked = true; 
-        simbolos.checked = true;
+        number.checked = true, number.disabled = false; 
+        simbolos.checked = true, simbolos.disabled = false;
         minuscula.checked = true;
         maiscula.checked = true;
     }
 })
 
-
-
 gerarSenha.addEventListener('click', ()=>{
- GerarSenha();
+    GerarSenha();
+})
+
+function copiarTexto(){
+    navigator.clipboard.writeText(inputSenha.value)
+    .then(() => {
+        console.log('Texto copiado para a área de transferência!');
+    })
+    .catch((error) => {
+        console.error('Falha ao copiar texto para a área de transferência:', error);
+    });
+}
+
+
+copytext.addEventListener('click', () =>{
+    copiarTexto();
+    botaoCopiar.innerHTML = "Senha copiada"
+})
+
+
+botaoCopiar.addEventListener('click', () =>{
+    copiarTexto();
+    botaoCopiar.innerHTML = "Senha copiada"
 })
