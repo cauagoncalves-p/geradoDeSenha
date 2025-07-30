@@ -11,7 +11,7 @@ const gerarSenha = document.getElementById('gerarSenha');
 const inputSenha = document.getElementById('senha');
 const copytext = document.getElementById('copiarSenha'); 
 const botaoCopiar = document.getElementById('btn-copy');
-const inputCkeck = document.querySelectorAll('input');
+const inputCkeck = document.querySelectorAll('input[type=checked]');
 
 window.onload = function(){
     slider.addEventListener('input', () => {
@@ -29,16 +29,18 @@ const numeros = '1234567890';
 const caracteresSimbolos = '!@#$%^&*()_+{}[]<>?'
 
 function check(){
-    let inputs = false;
-
     inputCkeck.forEach((e) =>{
+        let c = 0 ;
         if (e.checked){
-            inputs = true;
+            inputChek.forEach((v)) =>{
+                c += 1;
+            }
+        }
+
+        if (c === 1) {
+            e.checked = true;
         }
     })
-
-    
- 
 }
 
 function GerarSenha(){
