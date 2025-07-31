@@ -11,7 +11,7 @@ const gerarSenha = document.getElementById('gerarSenha');
 const inputSenha = document.getElementById('senha');
 const copytext = document.getElementById('copiarSenha'); 
 const botaoCopiar = document.getElementById('btn-copy');
-const inputCkeck = document.querySelectorAll('input[type=checked]');
+const inputCkeck = document.querySelectorAll('input[type="checkbox"]');
 
 window.onload = function(){
     slider.addEventListener('input', () => {
@@ -29,69 +29,86 @@ const numeros = '1234567890';
 const caracteresSimbolos = '!@#$%^&*()_+{}[]<>?'
 
 function check(){
+    let c = 0;
     inputCkeck.forEach((e) =>{
-        let c = 0 ;
-        if (e.checked){
-            inputChek.forEach((v)) =>{
-                c += 1;
-            }
-        }
+        e.addEventListener('change', () =>{
+            c = 0
+            inputCkeck.forEach((i) =>{
+                if (i.checked){
+                    c += 1
+                }
+            });
 
-        if (c === 1) {
-            e.checked = true;
-        }
+            if (c === 0){
+                e.checked = true
+            }
+        })
     })
 }
 
+check();
 function GerarSenha(){
     let senhaGerada = '';
     let embaralhar = '';   
-        if (maiscula.checked){
-            embaralhar = letrasM;
-        }
-        if (minuscula.checked){
-            embaralhar += letrasMi;
-        }
-        if (simbolos.checked){
-            embaralhar += caracteresSimbolos;
-        } 
-        if (number.checked){
-            embaralhar += numeros;
-        }
-        for (let i = 0; i < tamanho.value; i++){
-            senhaGerada += embaralhar.charAt(Math.floor(Math.random() * embaralhar.length));
-        }
-       inputSenha.value = senhaGerada;
-       botaoCopiar.innerHTML = "Copiar Texto"
-}
 
+    if (maiscula.checked){
+        embaralhar = letrasM;
+    }
+    if (minuscula.checked){
+        embaralhar += letrasMi;
+    }
+    if (simbolos.checked){
+        embaralhar += caracteresSimbolos;
+    } 
+    if (number.checked){
+        embaralhar += numeros;
+    }
+
+    if(embaralhar.length === 0) return
+
+    for (let i = 0; i < tamanho.value; i++){
+        senhaGerada += embaralhar.charAt(Math.floor(Math.random() * embaralhar.length));
+    }
+    inputSenha.value = senhaGerada;
+    botaoCopiar.textContent = "Copiar Texto"
+}
 facilPronunciar.addEventListener('change', (event) =>{
     if (event.target.checked){
-        number.disabled = true, number.checked = false;
-        simbolos.disabled = true, simbolos.checked = false;
+        number.disabled = true; 
+        number.checked = false;
+        simbolos.disabled = true; 
+        simbolos.checked = false;
     }
 })
-
 facilLer.addEventListener('change', (event)=>{
     if (event.target.checked){
-        number.disabled = false, number.checked = false; 
-        simbolos.disabled = false, simbolos.checked = false      
+        number.disabled = false;;
+        number.checked = false; 
+        simbolos.disabled = false;
+        simbolos.checked = false;    
     }
 })
-
 todosCaracter.addEventListener('change', (event) =>{
      if (event.target.checked){
-        number.checked = true, number.disabled = false; 
-        simbolos.checked = true, simbolos.disabled = false;
+        number.checked = true, 
+        number.disabled = false; 
+        simbolos.checked = true, 
+        simbolos.disabled = false;
         minuscula.checked = true;
         maiscula.checked = true;
     }
+});
+inputCkeck.forEach((c) =>{
+    c.addEventListener('change', ()=>{
+        if(!maiscula.checked|| !minuscula.checked|| !simbolos.checked || !number.checked){
+            todosCaracter.checked = false;
+            facilLer.checked = true
+        }
+    })
 })
-
 gerarSenha.addEventListener('click', ()=>{
     GerarSenha();
 })
-
 function copiarTexto(){
     navigator.clipboard.writeText(inputSenha.value)
     .then(() => {
@@ -101,15 +118,16 @@ function copiarTexto(){
         console.error('Falha ao copiar texto para a área de transferência:', error);
     });
 }
-
-
 copytext.addEventListener('click', () =>{
-    copiarTexto();
-    botaoCopiar.innerHTML = "Senha copiada"
+    if (inputSenha.value !== ""){
+        copiarTexto();
+        botaoCopiar.textContent = "Senha copiada"; 
+    }
+    
 })
-
-
 botaoCopiar.addEventListener('click', () =>{
-    copiarTexto();
-    botaoCopiar.innerHTML = "Senha copiada"
+    if (inputSenha.value !== ""){
+       copiarTexto();
+       botaoCopiar.textContent = "Senha copiada";
+    }
 })
