@@ -18,7 +18,7 @@ Um gerador de senhas simples, personalizável e eficiente, feito com **HTML**, *
 
 ## 📸 Prévia
 
-![preview do projeto](./kerforece.png)  
+![preview do projeto](./keyforce.png)  
 > *Adicione aqui um print ou gif do projeto funcionando.*
 
 ---
